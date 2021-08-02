@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.co.sofkau.web'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation (group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.3.1')
+    implementation (group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59')
+    implementation (group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '3.141.59')
+    implementation group: 'io.cucumber', name: 'cucumber-junit', version: '2.0.0'
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '2.0.0'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
+
+test {
+    useJUnitPlatform()
+}
