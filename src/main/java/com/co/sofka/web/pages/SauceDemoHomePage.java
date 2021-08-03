@@ -13,28 +13,22 @@ public class SauceDemoHomePage {
     @FindBy(how = How.XPATH, using = "//*[@class='title']")
     private WebElement titleHome;
 
-
+//botones
     @FindBy(xpath = "//*[@id=\"add-to-cart-sauce-labs-backpack\"]")
     private WebElement buttonAddToCart1;
-
     @FindBy(xpath = "//*[@id=\"add-to-cart-sauce-labs-bike-light\"]")
     private WebElement buttonAddToCart2;
-
     @FindBy(xpath = "//*[@id=\"add-to-cart-sauce-labs-bolt-t-shirt\"]")
     private WebElement buttonAddToCart3;
-
     @FindBy(xpath = "//*[@id=\"add-to-cart-sauce-labs-fleece-jacket\"]")
     private WebElement buttonAddToCart4;
-
     @FindBy(xpath = "//*[@id=\"add-to-cart-sauce-labs-onesie\"]")
     private WebElement buttonAddToCart5;
-
     @FindBy(xpath = "//*[@id=\"add-to-cart-test.allthethings()-t-shirt-(red)\"]")
     private WebElement buttonAddToCart6;
-
     @FindBy(className = "shopping_cart_badge")
     private WebElement cart;
-
+//nombre de productos
     @FindBy(xpath = "//*[@id=\"item_4_title_link\"]/div")
     private WebElement product1;
     @FindBy(xpath = "//*[@id=\"item_0_title_link\"]/div")

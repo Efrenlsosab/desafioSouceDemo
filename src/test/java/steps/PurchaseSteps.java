@@ -4,6 +4,7 @@ import com.co.sofka.web.controllers.BCLoginSouceDemo;
 import com.co.sofka.web.controllers.BCPurchaseSauceDemo;
 import com.co.sofka.web.controllers.DriverController;
 import com.co.sofka.web.pages.SauceDemoHomePage;
+import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.es.Cuando;
@@ -59,4 +60,25 @@ public class PurchaseSteps {
     }
 
 
+    @Dado("^que un usuario autenticado \"([^\"]*)\"\"([^\"]*)\", haya agregado un producto al carro de compras$")
+    public void queUnUsuarioAutenticadoHayaAgregadoUnProductoAlCarroDeCompras(String username, String password) {
+        BCLoginSouceDemo.startApp(driver, "https://www.saucedemo.com/");
+        BCLoginSouceDemo.loginUser(driver, username,password);
+    }
+
+    @Cuando("^el usuario ingresa en la pagina YOUR CART$")
+    public void elUsuarioIngresaEnLaPaginaYOURCART() {
+    }
+
+    @Y("^verifica que se muestre el producto$")
+    public void verificaQueSeMuestreElProducto() {
+    }
+
+    @Entonces("^ingresa a la pagina CHECKOUT: YOUR INFORMATION$")
+    public void ingresaALaPaginaCHECKOUTYOURINFORMATION() {
+    }
+
+    @Y("^digita la informacion personal y finaliza el proceso de compra$")
+    public void digitaLaInformacionPersonalYFinalizaElProcesoDeCompra() {
+    }
 }

@@ -20,7 +20,15 @@ Característica: proceso de compra de productos
       | 5        |
       | 0        |
 
-    Escenario: realizar el proceso de compra para un articulo
-      Dado que un usuario haya agregado un producto al carro de compras
-      Cuando el usuario ingresa en la pagina YOUR CART
+  Esquema del escenario: : realizar el proceso de compra para un articulo
+    Dado que un usuario autenticado "<usuario>""<password>", haya agregado un producto al carro de compras
+    Cuando el usuario ingresa en la pagina YOUR CART
+    Y verifica que se muestre el producto
+    Entonces ingresa a la pagina CHECKOUT: YOUR INFORMATION
+    Y digita la informacion personal y finaliza el proceso de compra
+    Ejemplos:
+      | usuario       | password     |
+      | standard_user | secret_sauce |
+      | problem_user  | secret_sauce |
+
 
