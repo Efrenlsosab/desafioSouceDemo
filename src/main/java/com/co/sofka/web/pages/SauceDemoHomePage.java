@@ -3,6 +3,7 @@ package com.co.sofka.web.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
@@ -31,6 +32,22 @@ public class SauceDemoHomePage {
     @FindBy(xpath = "//*[@id=\"add-to-cart-test.allthethings()-t-shirt-(red)\"]")
     private WebElement buttonAddToCart6;
 
+    @FindBy(className = "shopping_cart_badge")
+    private WebElement cart;
+
+    @FindBy(xpath = "//*[@id=\"item_4_title_link\"]/div")
+    private WebElement product1;
+    @FindBy(xpath = "//*[@id=\"item_0_title_link\"]/div")
+    private WebElement product2;
+    @FindBy(xpath = "//*[@id=\"item_1_title_link\"]/div")
+    private WebElement product3;
+    @FindBy(xpath = "//*[@id=\"item_2_title_link\"]/div")
+    private WebElement product4;
+    @FindBy(xpath = "//*[@id=\"item_3_title_link\"]/div")
+    private WebElement product5;
+    @FindBy(xpath = "//*[@id=\"item_5_title_link\"]/div")
+    private WebElement product6;
+
 
     public SauceDemoHomePage(WebDriver driver){
         PageFactory.initElements(driver, this);
@@ -41,7 +58,7 @@ public class SauceDemoHomePage {
     }
 
     public ArrayList<WebElement> listButton = new ArrayList<>();
-    public void addToList(){
+    public void addToListButtons(){
         listButton.add(buttonAddToCart1);
         listButton.add(buttonAddToCart2);
         listButton.add(buttonAddToCart3);
@@ -52,4 +69,23 @@ public class SauceDemoHomePage {
     public ArrayList<WebElement> getListButton() {
         return listButton;
     }
+
+    public WebElement getCart() {
+        return cart;
+    }
+
+    public ArrayList<WebElement> productsList = new ArrayList<>();
+    public void addToProductsList(){
+        productsList.add(product1);
+        productsList.add(product2);
+        productsList.add(product3);
+        productsList.add(product4);
+        productsList.add(product5);
+        productsList.add(product6);
+
+    }
+    public ArrayList<WebElement> getListNameProducts() {
+        return productsList;
+    }
+
 }
