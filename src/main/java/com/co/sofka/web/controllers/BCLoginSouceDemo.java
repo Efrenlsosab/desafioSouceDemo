@@ -2,9 +2,7 @@ package com.co.sofka.web.controllers;
 
 import com.co.sofka.web.pages.SauceDemoHomePage;
 import com.co.sofka.web.pages.SauceDemoLoginPage;
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 

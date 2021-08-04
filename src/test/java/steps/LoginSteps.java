@@ -8,8 +8,14 @@ import cucumber.api.java.Before;
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.es.Entonces;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import java.io.File;
+import java.io.IOException;
 
 public class LoginSteps {
     WebDriver driver;
@@ -31,8 +37,10 @@ public class LoginSteps {
     }
 
     @Entonces("^se visualiza un \"([^\"]*)\" de error$")
-    public void seVisualizaUnDeError(String mensaje) {
+    public void seVisualizaUnDeError(String mensaje) throws IOException {
         Assert.assertEquals(BCLoginSouceDemo.getMessage(driver), mensaje);
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("src/main/resources/screenshots/screenshotlogin.png"));
     }
 
     @After

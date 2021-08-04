@@ -1,6 +1,7 @@
 package com.co.sofka.web.controllers;
 
-import com.co.sofka.web.pages.SauceDemoHomePage;
+import com.co.sofka.web.data.DataInformation;
+import com.co.sofka.web.pages.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
@@ -25,14 +26,42 @@ public class BCPurchaseSauceDemo {
     }
 
 
-
-    public static void clickButtonAddToCart(SauceDemoHomePage page, String producto) {
+    public static void clickButtonAddToCart(SauceDemoHomePage page, Integer producto) {
         page.addToListButtons();
+        page.getListButton().get(producto).click();
+    }
 
-        page.getListButton().get(Integer.parseInt(producto)).click();
+    public static void clickCartpage(SauceDemoHomePage page) {
+        page.getCartpage().click();
+    }
+
+    public static void clickCheckout(SauceDemoYourCartPage yourCartPage) {
+        yourCartPage.getCheckoutbutton().click();
+    }
+
+    public static void clickContinue(SauceDemoCheckOut checkOut) {
+        checkOut.getButtonContinue().click();
     }
 
     public static String lookingCart(SauceDemoHomePage page) {
         return page.getCart().getText();
+    }
+
+
+    public static String getTittleCheckout(WebDriver driver) {
+        SauceDemoCheckOut checkOut = new SauceDemoCheckOut(driver);
+        return checkOut.getTitleCheckout().getText();
+    }
+
+    public static String getTittleCheckoutOverview(SauceDemoCheckOverview checkOverview) {
+        return checkOverview.getTitleCheckoutOverview().getText();
+    }
+
+    public static void getInformation(SauceDemoCheckOut checkOut) {
+        DataInformation dataInformation = new DataInformation();
+        dataInformation.dataGenerator();
+        checkOut.getFirstName().sendKeys(dataInformation.getFirstName());
+        checkOut.getLastName().sendKeys(dataInformation.getLast_name());
+        checkOut.getZipCode().sendKeys(dataInformation.getZip());
     }
 }

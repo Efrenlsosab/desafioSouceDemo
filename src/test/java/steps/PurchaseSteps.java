@@ -3,8 +3,10 @@ package steps;
 import com.co.sofka.web.controllers.BCLoginSouceDemo;
 import com.co.sofka.web.controllers.BCPurchaseSauceDemo;
 import com.co.sofka.web.controllers.DriverController;
+import com.co.sofka.web.pages.SauceDemoCheckOut;
+import com.co.sofka.web.pages.SauceDemoCheckOverview;
 import com.co.sofka.web.pages.SauceDemoHomePage;
-import cucumber.api.PendingException;
+import com.co.sofka.web.pages.SauceDemoYourCartPage;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.es.Cuando;
@@ -48,7 +50,7 @@ public class PurchaseSteps {
 
 
     @Y("^da click en el boton ADD TO CART de cualquier \"([^\"]*)\"$")
-    public void daClickEnElBotonADDTOCARTDeCualquier(String producto)  {
+    public void daClickEnElBotonADDTOCARTDeCualquier(Integer producto) {
         SauceDemoHomePage page = new SauceDemoHomePage(driver);
         BCPurchaseSauceDemo.clickButtonAddToCart(page, producto);
     }
@@ -60,25 +62,31 @@ public class PurchaseSteps {
     }
 
 
-    @Dado("^que un usuario autenticado \"([^\"]*)\"\"([^\"]*)\", haya agregado un producto al carro de compras$")
-    public void queUnUsuarioAutenticadoHayaAgregadoUnProductoAlCarroDeCompras(String username, String password) {
+    @Dado("^que un usuario autenticado con \"([^\"]*)\" y \"([^\"]*)\"$")
+    public void queUnUsuarioAutenticadoConY(String username, String password) {
         BCLoginSouceDemo.startApp(driver, "https://www.saucedemo.com/");
-        BCLoginSouceDemo.loginUser(driver, username,password);
+        BCLoginSouceDemo.loginUser(driver, username, password);
     }
 
-    @Cuando("^el usuario ingresa en la pagina YOUR CART$")
-    public void elUsuarioIngresaEnLaPaginaYOURCART() {
+    @Y("^haya agregado un producto al carro de compras$")
+    public void hayaAgregadoUnProductoAlCarroDeCompras() {
+        SauceDemoHomePage page = new SauceDemoHomePage(driver);
+        BCPurchaseSauceDemo.clickButtonAddToCart(page, 1);
+
     }
 
-    @Y("^verifica que se muestre el producto$")
-    public void verificaQueSeMuestreElProducto() {
+    @Cuando("^el usuario ingresa en la pagina CHECKOUT: YOUR INFORMATION$")
+    public void elUsuarioIngresaEnLaPaginaCHECKOUTYOURINFORMATION() {
+        SauceDemoHomePage page = new SauceDemoHomePage(driver);
+        BCPurchaseSauceDemo.clickCartpage(page);
+        SauceDemoYourCartPage yourCartPage = new SauceDemoYourCartPage(driver);
+        BCPurchaseSauceDemo.clickCheckout(yourCartPage);
+        Assert.assertEquals(BCPurchaseSauceDemo.getTittleCheckout(driver), "CHECKOUT: YOUR INFORMATION");
     }
 
-    @Entonces("^ingresa a la pagina CHECKOUT: YOUR INFORMATION$")
-    public void ingresaALaPaginaCHECKOUTYOURINFORMATION() {
-    }
+    @Entonces("^Se podra ingresar informacion personal en los respectivvos campos$")
+    public void sePodraIngresarInformacionPersonalEnLosRespectivvosCampos() {
 
-    @Y("^digita la informacion personal y finaliza el proceso de compra$")
-    public void digitaLaInformacionPersonalYFinalizaElProcesoDeCompra() {
+
     }
 }

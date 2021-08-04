@@ -13,7 +13,7 @@ public class SauceDemoHomePage {
     @FindBy(how = How.XPATH, using = "//*[@class='title']")
     private WebElement titleHome;
 
-//botones
+//botones add to cart
     @FindBy(xpath = "//*[@id=\"add-to-cart-sauce-labs-backpack\"]")
     private WebElement buttonAddToCart1;
     @FindBy(xpath = "//*[@id=\"add-to-cart-sauce-labs-bike-light\"]")
@@ -41,6 +41,9 @@ public class SauceDemoHomePage {
     private WebElement product5;
     @FindBy(xpath = "//*[@id=\"item_5_title_link\"]/div")
     private WebElement product6;
+
+    @FindBy(xpath = "//*[@id=\"shopping_cart_container\"]/a")
+    private WebElement cartpage;
 
 
     public SauceDemoHomePage(WebDriver driver){
@@ -81,5 +84,8 @@ public class SauceDemoHomePage {
     public ArrayList<WebElement> getListNameProducts() {
         return productsList;
     }
+
+    public WebElement getCartpage(){return cartpage;}
+
 
 }

@@ -11,6 +11,9 @@ public class SauceDemoYourCartPage {
     @FindBy(how = How.XPATH, using = "//*[@id=\"header_container\"]/div[2]/span")
     private WebElement titleYourCart;
 
+    @FindBy(how = How.XPATH, using = "//*[@id=\"checkout\"]")
+    private WebElement checkoutbutton;
+
     public SauceDemoYourCartPage(WebDriver driver){
         PageFactory.initElements(driver, this);
     }
@@ -18,4 +21,5 @@ public class SauceDemoYourCartPage {
     public WebElement getTitleYourCart() {
         return titleYourCart;
     }
+    public WebElement getCheckoutbutton(){ return checkoutbutton;}
 }
