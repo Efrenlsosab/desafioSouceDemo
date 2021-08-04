@@ -1,6 +1,7 @@
 package com.co.sofka.web.data;
 
 import com.github.javafaker.Faker;
+import org.apache.hc.core5.http2.frame.StreamIdGenerator;
 
 import java.security.SecureRandom;
 import java.util.Locale;
@@ -11,12 +12,15 @@ public class DataInformation {
     private String firstName;
     private String last_name;
     private String zip;
+    private String username;
+    private String password;
 
     public void dataGenerator(){
         setFirstName(faker.name().firstName());
         setLast_name(faker.name().lastName());
         setZip(faker.address().zipCode());
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -40,5 +44,21 @@ public class DataInformation {
 
     public void setZip(String zip) {
         this.zip = zip;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

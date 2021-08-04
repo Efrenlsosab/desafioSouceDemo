@@ -24,3 +24,8 @@ Característica:Autenticacion de usuario en el sitio Sauce demo
       | standard_user           | secret_sauce |
       | problem_user            | secret_sauce |
       | performance_glitch_user | secret_sauce |
+
+    Escenario: Autenticacion por medio de base de datos
+      Dado un usuario en la pagina inicial de souce demo
+      Cuando ingresa usuario y contrasena por medio de la base de datos
+      Entonces se autentica correctamente

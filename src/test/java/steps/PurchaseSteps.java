@@ -28,6 +28,7 @@ public class PurchaseSteps {
     @Before
     public void setUp() {
         driver = DriverController.getDriver();
+        //driver = DriverController.getDriverFirefox();
     }
 
     @After

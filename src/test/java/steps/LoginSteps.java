@@ -2,6 +2,7 @@ package steps;
 
 import com.co.sofka.web.controllers.BCLoginSouceDemo;
 import com.co.sofka.web.controllers.DriverController;
+import com.co.sofka.web.data.DataInformation;
 import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
@@ -16,13 +17,14 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginSteps {
     WebDriver driver;
-
     @Before
     public void setUp() {
         driver = DriverController.getDriver();
+        //driver = DriverController.getDriverFirefox();
     }
 
     @Dado("^un usuario en la pagina inicial de souce demo$")
@@ -66,4 +68,17 @@ public class LoginSteps {
     }
 
 
+    @Cuando("^ingresa usuario y contrasena por medio de la base de datos$")
+    public void ingresaUsuarioYContrasenaPorMedioDeLaBaseDeDatos() throws SQLException {
+        DataInformation dataInformation = new DataInformation();
+    BCLoginSouceDemo.loginUserWithDB(driver, dataInformation);
+    BCLoginSouceDemo.loginUser(driver, dataInformation.getUsername(), dataInformation.getPassword());
+    }
+
+    @Entonces("^se autentica correctamente$")
+    public void seAutenticaCorrectamente() throws IOException {
+        Assert.assertEquals(BCLoginSouceDemo.getTitleHome(driver), "PRODUCTS");
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("src/main/resources/screenshots/LogincorrectoDB.png"));
+    }
 }
