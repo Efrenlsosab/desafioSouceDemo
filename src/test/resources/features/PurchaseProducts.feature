@@ -28,6 +28,6 @@ Característica: proceso de compra de productos
     Ejemplos:
       | usuario       | password     |
       | standard_user | secret_sauce |
-      | problem_user  | secret_sauce |
+
 
 

@@ -40,7 +40,7 @@ public class LoginSteps {
     public void seVisualizaUnDeError(String mensaje) throws IOException {
         Assert.assertEquals(BCLoginSouceDemo.getMessage(driver), mensaje);
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("src/main/resources/screenshots/screenshotlogin.png"));
+        FileUtils.copyFile(scrFile, new File("src/main/resources/screenshots/LoginIncorrecto.png"));
     }
 
     @After
@@ -59,8 +59,10 @@ public class LoginSteps {
     }
 
     @Entonces("^se puede autenticar correctamente$")
-    public void sePuedeAutenticarCorrectamente() {
+    public void sePuedeAutenticarCorrectamente() throws IOException {
         Assert.assertEquals(BCLoginSouceDemo.getTitleHome(driver), "PRODUCTS");
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("src/main/resources/screenshots/Logincorrecto.png"));
     }
 
 

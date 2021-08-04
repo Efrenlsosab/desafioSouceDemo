@@ -13,8 +13,14 @@ import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.es.Entonces;
 import cucumber.api.java.es.Y;
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+
+import java.io.File;
+import java.io.IOException;
 
 public class PurchaseSteps {
     WebDriver driver;
@@ -46,13 +52,16 @@ public class PurchaseSteps {
     public void visualizaraLosBotonesParaAnadirAlCarroDeComprasADDTOCARTEnLosProductos() {
         SauceDemoHomePage page = new SauceDemoHomePage(driver);
         BCPurchaseSauceDemo.isVisibleButtons(page);
+
     }
 
 
     @Y("^da click en el boton ADD TO CART de cualquier \"([^\"]*)\"$")
-    public void daClickEnElBotonADDTOCARTDeCualquier(Integer producto) {
+    public void daClickEnElBotonADDTOCARTDeCualquier(Integer producto) throws IOException {
         SauceDemoHomePage page = new SauceDemoHomePage(driver);
         BCPurchaseSauceDemo.clickButtonAddToCart(page, producto);
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("src/main/resources/screenshots/buttonsAddToCart.png"));
     }
 
     @Entonces("^el producto se agrega a la lista de ADD TO CART$")
@@ -85,8 +94,13 @@ public class PurchaseSteps {
     }
 
     @Entonces("^Se podra ingresar informacion personal en los respectivvos campos$")
-    public void sePodraIngresarInformacionPersonalEnLosRespectivvosCampos() {
-
-
+    public void sePodraIngresarInformacionPersonalEnLosRespectivvosCampos() throws IOException {
+        SauceDemoCheckOut checkOut = new SauceDemoCheckOut(driver);
+        SauceDemoCheckOverview checkOverview = new SauceDemoCheckOverview(driver);
+        BCPurchaseSauceDemo.getInformation(checkOut);
+        BCPurchaseSauceDemo.clickContinue(checkOut);
+        Assert.assertEquals(BCPurchaseSauceDemo.getTittleCheckoutOverview(checkOverview), "CHECKOUT: OVERVIEW");
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("src/main/resources/screenshots/PersonalInformation.png"));
     }
 }
